@@ -60,12 +60,14 @@ window.addEventListener("load", function () {
         height: "2rem",
         "-webkit-appearance": 0,
         "border-radius": 0
-    })}, {click: function () {
-        if (result.parentNode) {
-            result.parentNode.removeChild(result);
-            input.value = "";
+    })}, {
+        click: function () {
+            if (result.parentNode) {
+                result.parentNode.removeChild(result);
+                input.value = "";
+            }
         }
-    }});
+    });
     var submitBtn = element("button", "GO", {type: "submit", style: style({
         width: "3rem",
         height: "2rem",
@@ -86,7 +88,7 @@ window.addEventListener("load", function () {
     var overlay = element("div", form,
         {
             style: style({
-                position: "fixed",
+                position: "absolute",
                 margin: "auto",
                 top: 0,
                 right: 0,
@@ -99,7 +101,23 @@ window.addEventListener("load", function () {
         }
     );
 
-    document.body.appendChild(overlay);
+    window.addEventListener("scroll", function () {
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        var offset = 150;
+        var header = document.querySelector("header");
+        if (header) {
+            offset = header.clientHeight;
+        }
+        overlay.style.marginTop = scrollTop + "px";
+        if (scrollTop > offset) {
+            if (!overlay.parentNode) {
+                document.body.appendChild(overlay);
+            }
+        } else if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
+        }
+    });
+
 
     // Selected text
     function translateSelectedText() {
