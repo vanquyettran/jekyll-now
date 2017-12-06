@@ -94,13 +94,12 @@ window.addEventListener("load", function () {
                 background: "#eee",
                 width: "100%",
                 opacity: 0.95,
-                transition: "200ms",
                 "z-index": 1000,
                 "max-width": "480px"
             })
         }
     );
-    document.body.appendChild(overlay);
+    
     window.addEventListener("scroll", function () {
         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
         var offset = 150;
@@ -108,12 +107,12 @@ window.addEventListener("load", function () {
         if (header) {
             offset = header.clientHeight;
         }
-        console.log(scrollTop);
-        console.log(offset);
         if (scrollTop > offset) {
-            overlay.style.opacity = 0.95;
-        } else {
-            overlay.style.opacity = 0;
+            if (!overlay.parentNode) {
+                document.body.appendChild(overlay);
+            }
+        } else if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
         }
     });
 
