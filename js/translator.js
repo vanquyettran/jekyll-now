@@ -106,7 +106,7 @@ window.addEventListener("load", function () {
             style: style({
                 position: "absolute",
                 margin: "auto",
-                top: 0,
+                bottom: 0,
                 right: 0,
                 background: "#eee",
                 width: "100%",
@@ -117,22 +117,23 @@ window.addEventListener("load", function () {
         }
     );
 
-    window.addEventListener("scroll", function () {
-        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        var offset = 150;
-        var header = document.querySelector("header");
-        if (header) {
-            offset = header.clientHeight;
-        }
-        overlay.style.top = scrollTop + "px";
-        if (scrollTop > offset) {
-            if (!overlay.parentNode) {
-                document.body.appendChild(overlay);
-            }
-        } else if (overlay.parentNode) {
-            overlay.parentNode.removeChild(overlay);
-        }
-    });
+    document.body.appendChild(overlay);
+    // window.addEventListener("scroll", function () {
+    //     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    //     var offset = 150;
+    //     var header = document.querySelector("header");
+    //     if (header) {
+    //         offset = header.clientHeight;
+    //     }
+    //     overlay.style.top = scrollTop + "px";
+    //     if (scrollTop > offset) {
+    //         if (!overlay.parentNode) {
+    //             document.body.appendChild(overlay);
+    //         }
+    //     } else if (overlay.parentNode) {
+    //         overlay.parentNode.removeChild(overlay);
+    //     }
+    // });
 
 
     // Selected text
