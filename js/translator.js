@@ -99,8 +99,8 @@ window.addEventListener("load", function () {
             })
         }
     );
-    
-    window.addEventListener("scroll", function () {
+
+    document.body.addEventListener("scroll", function () {
         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
         var offset = 150;
         var header = document.querySelector("header");
