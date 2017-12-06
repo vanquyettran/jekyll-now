@@ -100,6 +100,7 @@ window.addEventListener("load", function () {
         }
     );
 
+    document.body.appendChild(overlay);
     document.body.addEventListener("scroll", function () {
         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
         var offset = 150;
