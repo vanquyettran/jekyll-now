@@ -108,7 +108,7 @@ window.addEventListener("load", function () {
         if (header) {
             offset = header.clientHeight;
         }
-        overlay.style.marginTop = scrollTop + "px";
+        overlay.style.top = scrollTop + "px";
         if (scrollTop > offset) {
             if (!overlay.parentNode) {
                 document.body.appendChild(overlay);
