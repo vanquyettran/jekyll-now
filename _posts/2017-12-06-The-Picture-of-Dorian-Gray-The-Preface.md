@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The Picture of Dorian Gray - The Preface
+description: The artist is the creator of beautiful things. To reveal art and conceal the artist is art's aim. The critic is he who can translate into another manner or a new material his impression of beautiful things
 ---
 
 The Picture of Dorian Gray
