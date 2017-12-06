@@ -13,6 +13,13 @@
 /* BASE RULES */
 /**************/
 
+/* https://stackoverflow.com/questions/29001977/safari-in-ios8-is-scrolling-screen-when-fixed-elements-get-focus */
+html, body{
+    -webkit-overflow-scrolling : touch !important;
+    overflow: auto !important;
+    height: 100% !important;
+}
+
 html {
   font-size: 100%;
 }
