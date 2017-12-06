@@ -3,8 +3,6 @@ layout: post
 title: The Picture of Dorian Gray - Chapter 1
 ---
 
-CHAPTER 1
-
 The studio was filled with the rich odour of roses, and when the light
 summer wind stirred amidst the trees of the garden, there came through
 the open door the heavy scent of the lilac, or the more delicate
