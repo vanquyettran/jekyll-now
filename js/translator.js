@@ -12,13 +12,18 @@ window.addEventListener("load", function () {
             "text-align": "center",
             padding: "0 0.5rem"
         })
+    }, {
+        focus: function () {
+            this.select();
+        }
     });
     var result = element("div");
     var resultText = element("div", null, {
         style: style({
-            "max-height": "40vh",
+            padding: "0 0.5rem",
+            "max-height": "30vh",
             "overflow-y": "auto",
-            padding: "0 0.5rem"
+            "font-size": "14px"
         })
     });
     appendChildren(result, resultText);
