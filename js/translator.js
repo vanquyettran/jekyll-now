@@ -89,7 +89,7 @@ window.addEventListener("load", function () {
             style: style({
                 position: "fixed",
                 margin: "auto",
-                bottom: 0,
+                top: 0,
                 right: 0,
                 background: "#eee",
                 width: "100%",
