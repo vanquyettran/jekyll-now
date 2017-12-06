@@ -6,11 +6,13 @@ window.addEventListener("load", function () {
             height: "2rem",
             border: "none",
             color: "#000",
+            padding: "0 0.5rem",
             "font-size": "16px",
             "background-color": "#ccc",
             "box-shadow": "none",
             "text-align": "center",
-            padding: "0 0.5rem"
+            "-webkit-appearance": "none",
+            "border-radius": 0
         })
     });
     var result = element("div");
