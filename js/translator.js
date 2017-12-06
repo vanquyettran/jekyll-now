@@ -55,27 +55,25 @@ window.addEventListener("load", function () {
             xhr.send();
         }
     };
+    var clearBtn = element("button", "X", {type: "reset", style: style({
+        width: "3rem",
+        height: "2rem",
+        "-webkit-appearance": 0,
+        "border-radius": 0
+    })}, {click: function () {
+        if (result.parentNode) {
+            result.parentNode.removeChild(result);
+            input.value = "";
+        }
+    }});
+    var submitBtn = element("button", "GO", {type: "submit", style: style({
+        width: "3rem",
+        height: "2rem",
+        "-webkit-appearance": 0,
+        "border-radius": 0
+    })});
     var form = element("form",
-        [
-            element("button", "X", {type: "reset", style: style({
-                width: "3rem",
-                height: "2rem",
-                "-webkit-appearance": 0,
-                "border-radius": 0
-            })}, {click: function () {
-                if (result.parentNode) {
-                    result.parentNode.removeChild(result);
-                    input.value = "";
-                }
-            }}),
-            input,
-            element("button", "GO", {type: "submit", style: style({
-                width: "3rem",
-                height: "2rem",
-                "-webkit-appearance": 0,
-                "border-radius": 0
-            })})
-        ],
+        [clearBtn, input, submitBtn],
         {},
         {
             submit: function (event) {
@@ -101,22 +99,6 @@ window.addEventListener("load", function () {
     );
 
     document.body.appendChild(overlay);
-    document.body.addEventListener("scroll", function () {
-        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        var offset = 150;
-        var header = document.querySelector("header");
-        if (header) {
-            offset = header.clientHeight;
-        }
-        if (scrollTop > offset) {
-            if (!overlay.parentNode) {
-                document.body.appendChild(overlay);
-            }
-        } else if (overlay.parentNode) {
-            overlay.parentNode.removeChild(overlay);
-        }
-    });
-
 
     // Selected text
     function translateSelectedText() {
