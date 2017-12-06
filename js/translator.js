@@ -22,7 +22,22 @@ window.addEventListener("load", function () {
             "font-size": "14px"
         })
     });
-    result.appendChild(resultText);
+    var resetForm = function () {
+        if (result.parentNode) {
+            result.parentNode.removeChild(result);
+            input.value = "";
+        }
+    };
+    var closeBtn = element("button", "CLOSE", {type: "button", style: style({
+        width: "100%",
+        height: "2rem",
+        border: "none",
+        "-webkit-appearance": "none",
+        "border-radius": 0
+    })}, {
+        click: resetForm
+    });
+    appendChildren(result, [resultText, closeBtn]);
     var translate = function () {
         var word = input.value.trim();
         if (word) {
@@ -58,20 +73,19 @@ window.addEventListener("load", function () {
     var clearBtn = element("button", "X", {type: "reset", style: style({
         width: "3rem",
         height: "2rem",
-        "-webkit-appearance": 0,
+        border: "none",
+        display: "block",
+        float: "left",
+        "-webkit-appearance": "none",
         "border-radius": 0
-    })}, {
-        click: function () {
-            if (result.parentNode) {
-                result.parentNode.removeChild(result);
-                input.value = "";
-            }
-        }
-    });
+    })});
     var submitBtn = element("button", "GO", {type: "submit", style: style({
         width: "3rem",
         height: "2rem",
-        "-webkit-appearance": 0,
+        border: "none",
+        display: "block",
+        float: "right",
+        "-webkit-appearance": "none",
         "border-radius": 0
     })});
     var form = element("form",
