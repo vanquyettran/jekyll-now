@@ -112,7 +112,8 @@ window.addEventListener("load", function () {
                 width: "100%",
                 opacity: 0.95,
                 "z-index": 1000,
-                "max-width": "480px"
+                "max-width": "480px",
+                "border-radius": "3px"
             })
         }
     );
