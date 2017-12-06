@@ -34,6 +34,7 @@ window.addEventListener("load", function () {
         width: "100%",
         height: "2rem",
         border: "none",
+        "background-color": "#ccc",
         "-webkit-appearance": "none",
         "border-radius": 0
     })}, {
@@ -111,6 +112,7 @@ window.addEventListener("load", function () {
                 background: "#eee",
                 width: "100%",
                 opacity: 0.95,
+                overflow: "hidden",
                 "z-index": 1000,
                 "max-width": "480px",
                 "border-radius": "3px"
