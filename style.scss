@@ -13,6 +13,11 @@
 /* BASE RULES */
 /**************/
 
+html, body {
+    -webkit-overflow-scrolling : touch !important;
+    overflow: auto !important;
+}
+
 html {
   font-size: 100%;
 }
@@ -21,7 +26,7 @@ body {
   background: $white;
   font: 18px/1.4 $helvetica;
   color: $darkGray;
-	position: relative;
+  position: relative;
 }
 
 .container {
