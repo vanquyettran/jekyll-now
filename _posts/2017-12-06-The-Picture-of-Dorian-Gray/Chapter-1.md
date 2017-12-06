@@ -1,7 +1,7 @@
---
+---
 layout: post
 title: The Picture of Dorian Gray, Chapter 1
---
+---
 
 CHAPTER 1
 
