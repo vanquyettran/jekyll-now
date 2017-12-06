@@ -78,6 +78,7 @@ window.addEventListener("load", function () {
         {
             submit: function (event) {
                 event.preventDefault();
+                input.blur();
                 translate();
             }
         }
