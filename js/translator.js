@@ -34,7 +34,7 @@ window.addEventListener("load", function () {
         width: "100%",
         height: "2rem",
         border: "none",
-        "background-color": "#ccc",
+        "background-color": "#ddd",
         "-webkit-appearance": "none",
         "border-radius": 0
     })}, {
