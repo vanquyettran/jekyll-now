@@ -5,10 +5,12 @@ window.addEventListener("load", function () {
             width: "calc(100% - 6rem)",
             height: "2rem",
             border: "none",
+            color: "#000",
             "font-size": "16px",
-            "text-align": "center",
             "background-color": "#ccc",
-            "box-shadow": "none"
+            "box-shadow": "none",
+            "text-align": "center",
+            padding: "0 0.5rem"
         })
     });
     var result = element("div");
@@ -24,7 +26,8 @@ window.addEventListener("load", function () {
         [
             element("button", "X", {type: "reset", style: style({
                 width: "3rem",
-                height: "2rem"
+                height: "2rem",
+                "border-radius": 0
             })}, {click: function () {
                 if (result.parentNode) {
                     result.parentNode.removeChild(result);
@@ -34,7 +37,8 @@ window.addEventListener("load", function () {
             input,
             element("button", "GO", {type: "submit", style: style({
                 width: "3rem",
-                height: "2rem"
+                height: "2rem",
+                "border-radius": 0
             })})
         ],
         {},
@@ -53,9 +57,13 @@ window.addEventListener("load", function () {
                         empty(resultText);
                         var res = JSON.parse(xhr.responseText);
                         if (res instanceof Array) {
-                            res.forEach(function (line) {
-                                resultText.appendChild(element("p", line));
-                            });
+                            if (res.length == 0) {
+                                resultText.appendChild(element("p", "Not found!"))
+                            } else {
+                                res.forEach(function (line) {
+                                    resultText.appendChild(element("p", line));
+                                });
+                            }
                         } else {
                             resultText.appendChild(element("p", xhr.responseText));
                         }
@@ -88,8 +96,11 @@ window.addEventListener("load", function () {
 
 
     // Selected text
-    document.onmouseup = document.onkeyup = document.onselectionchange = function() {
-        input.value = getSelectionText();
+    document.onmouseup = document.onkeyup = document.onselectionchange = function(target) {
+        var text = getSelectionText();
+        if (text && !input.value) {
+            input.value = text;
+        }
     };
 });
 
