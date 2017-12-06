@@ -12,10 +12,6 @@ window.addEventListener("load", function () {
             "text-align": "center",
             padding: "0 0.5rem"
         })
-    }, {
-        focus: function () {
-            this.select();
-        }
     });
     var result = element("div");
     var resultText = element("div", null, {
@@ -26,12 +22,45 @@ window.addEventListener("load", function () {
             "font-size": "14px"
         })
     });
-    appendChildren(result, resultText);
+    result.appendChild(resultText);
+    var translate = function () {
+        var word = input.value.trim();
+        if (word) {
+            empty(resultText);
+            resultText.appendChild(element("p", "Loading..."));
+            if (!result.parentNode) {
+                overlay.appendChild(result);
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                empty(resultText);
+                var res = JSON.parse(xhr.responseText);
+                if (res instanceof Array) {
+                    if (res.length == 0) {
+                        resultText.appendChild(element("p", "Not found!"))
+                    } else {
+                        res.forEach(function (line) {
+                            resultText.appendChild(element("p", line));
+                        });
+                    }
+                } else {
+                    resultText.appendChild(element("p", xhr.responseText));
+                }
+            });
+            xhr.addEventListener("error", function () {
+                empty(resultText);
+                resultText.appendChild(element("p", "Unexpected error!"));
+            });
+            xhr.open("GET", "https://traxanhthainguyen.com/test/translate?word=" + word);
+            xhr.send();
+        }
+    };
     var form = element("form",
         [
             element("button", "X", {type: "reset", style: style({
                 width: "3rem",
                 height: "2rem",
+                "-webkit-appearance": 0,
                 "border-radius": 0
             })}, {click: function () {
                 if (result.parentNode) {
@@ -43,6 +72,7 @@ window.addEventListener("load", function () {
             element("button", "GO", {type: "submit", style: style({
                 width: "3rem",
                 height: "2rem",
+                "-webkit-appearance": 0,
                 "border-radius": 0
             })})
         ],
@@ -50,36 +80,7 @@ window.addEventListener("load", function () {
         {
             submit: function (event) {
                 event.preventDefault();
-
-                if (input.value) {
-                    empty(resultText);
-                    resultText.appendChild(element("p", "Loading..."));
-                    if (!result.parentNode) {
-                        overlay.appendChild(result);
-                    }
-                    var xhr = new XMLHttpRequest();
-                    xhr.addEventListener("load", function () {
-                        empty(resultText);
-                        var res = JSON.parse(xhr.responseText);
-                        if (res instanceof Array) {
-                            if (res.length == 0) {
-                                resultText.appendChild(element("p", "Not found!"))
-                            } else {
-                                res.forEach(function (line) {
-                                    resultText.appendChild(element("p", line));
-                                });
-                            }
-                        } else {
-                            resultText.appendChild(element("p", xhr.responseText));
-                        }
-                    });
-                    xhr.addEventListener("error", function () {
-                        empty(resultText);
-                        resultText.appendChild(element("p", "Unexpected error!"));
-                    });
-                    xhr.open("GET", "https://traxanhthainguyen.com/test/translate?word=" + input.value);
-                    xhr.send();
-                }
+                translate();
             }
         }
     );
@@ -87,13 +88,14 @@ window.addEventListener("load", function () {
         {
             style: style({
                 position: "fixed",
+                margin: "auto",
                 bottom: 0,
                 right: 0,
                 background: "#eee",
                 width: "100%",
+                opacity: 0.95,
                 "z-index": 1000,
-                "max-width": "480px",
-                margin: "auto"
+                "max-width": "480px"
             })
         }
     );
@@ -101,10 +103,11 @@ window.addEventListener("load", function () {
 
 
     // Selected text
-    document.onmouseup = document.onkeyup = document.onselectionchange = function(target) {
-        var text = getSelectionText();
-        if (text && !input.value) {
-            input.value = text;
+    document.onmouseup = document.onkeyup = document.onselectionchange = function(event) {
+        var word = getSelectionText().trim();
+        if (word && "" == input.value.trim()) {
+            input.value = word;
+            translate();
         }
     };
 });
