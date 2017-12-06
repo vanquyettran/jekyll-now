@@ -94,22 +94,39 @@ window.addEventListener("load", function () {
                 background: "#eee",
                 width: "100%",
                 opacity: 0.95,
+                transition: "200ms",
                 "z-index": 1000,
                 "max-width": "480px"
             })
         }
     );
     document.body.appendChild(overlay);
+    window.addEventListener("scroll", function () {
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        var offset = 150;
+        var header = document.querySelector("header");
+        if (header) {
+            offset = header.clientHeight;
+        }
+        console.log(scrollTop);
+        console.log(offset);
+        if (scrollTop > offset) {
+            overlay.style.opacity = 0.95;
+        } else {
+            overlay.style.opacity = 0;
+        }
+    });
 
 
     // Selected text
-    document.onmouseup = document.onkeyup = document.onselectionchange = function(event) {
+    function translateSelectedText() {
         var word = getSelectionText().trim();
         if (word && "" == input.value.trim()) {
             input.value = word;
             translate();
         }
-    };
+    }
+    document.addEventListener("selectionchange", translateSelectedText);
 });
 
 
