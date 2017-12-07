@@ -143,6 +143,7 @@ window.addEventListener("load", function () {
     document.addEventListener("click", function (event) {
         var node = event.target;
         var overlayClicked = (node === overlay || isContains(overlay, node));
+        result.appendChild(element("div", node.nodeName));
         if (!overlayClicked && !translating) {
             resetForm();
         }
