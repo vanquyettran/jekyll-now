@@ -143,36 +143,19 @@ window.addEventListener("load", function () {
     });
 
     // Selected text
-    var translating = false;
-    var docHandleClick = function (event) {
-        result.appendChild(element("p", "Clicked!"));
-        var node = event.target;
-        var overlayClicked = (node === overlay || isContains(overlay, node));
-        if (!overlayClicked && !translating) {
-            resetForm();
-        }
-    };
-    if (document.ontouchstart) {
-        document.addEventListener("touchstart", docHandleClick);
-    } else {
-        document.addEventListener("click", docHandleClick);
-    }
-    function translateSelectedText() {
+    function handleSelectionChange() {
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
             if (word && word.length < 30) {
                 input.value = word;
-                translate(function () {
-                    translating = false;
-                });
-                translating = true;
+                translate();
             } else {
-                translating = false;
+                resetForm();
             }
         }
     }
-    document.addEventListener("selectionchange", translateSelectedText);
+    document.addEventListener("selectionchange", handleSelectionChange);
 });
 
 function getSelectionNode() {
