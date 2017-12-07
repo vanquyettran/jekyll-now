@@ -152,10 +152,12 @@ window.addEventListener("load", function () {
                 input.value = word;
                 translate();
             } else {
-                resultText.appendChild(element("p", [overlayJustClicked.toString(), JSON.stringify(node)]));
-                if (!overlayJustClicked) {
-//                    resetForm();
-                }
+                                setTimeout(function () {
+                    resultText.appendChild(element("p", [overlayJustClicked.toString(), JSON.stringify(node)]));
+                    if (!overlayJustClicked) {
+    //                    resetForm();
+                    }
+                }, 100);
             }
         }
     }
