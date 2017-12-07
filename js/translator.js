@@ -155,7 +155,7 @@ window.addEventListener("load", function () {
 });
 
 function getSelectionNode() {
-    return window.getSelection().anchorNode.parentNode;
+    return window.getSelection().anchorNode;
 }
 
 function getSelectionText() {
