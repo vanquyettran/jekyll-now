@@ -138,26 +138,25 @@ window.addEventListener("load", function () {
         }
     });
 
-        // Selected text
-    var overlayJustClicked = false;
+    // Selected text
+    var translating = false;
     document.addEventListener("click", function (event) {
         var node = event.target;
-        overlayJustClicked = (node === overlay || isContains(overlay, node));
+        overlayClicked = (node === overlay || isContains(overlay, node));
+        if (!overlayClicked && !translating) {
+            resetForm();
+        }
     });
-        function translateSelectedText() {
+    function translateSelectedText() {
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
             if (word && word.length < 30) {
                 input.value = word;
                 translate();
+                translating = true;
             } else {
-                                setTimeout(function () {
-                    resultText.appendChild(element("p", [overlayJustClicked.toString(), JSON.stringify(node)]));
-                    if (!overlayJustClicked) {
-    //                    resetForm();
-                    }
-                }, 100);
+                translating = false;
             }
         }
     }
