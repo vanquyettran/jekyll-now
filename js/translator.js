@@ -158,15 +158,20 @@ window.addEventListener("load", function () {
 
 
 function clearSelection() {
-    if ( document.selection ) {
-        document.selection.empty();
-    } else if ( window.getSelection ) {
-        window.getSelection().removeAllRanges();
-    }
-    
-    if (document.execCommand) {
-        document.execCommand("Unselect");
-    }
+    document.body.style += style({
+        "-webkit-user-select": "none",
+        "-moz-user-select": "none",
+        "-ms-user-select": "none",
+        "user-select": "none"
+    });
+    setTimeout(function () {
+        document.body.style += style({
+            "-webkit-user-select": "all",
+            "-moz-user-select": "all",
+            "-ms-user-select": "all",
+            "user-select": "all"
+        });
+    }, 100);
 }
 
 function getSelectionText() {
