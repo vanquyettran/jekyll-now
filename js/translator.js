@@ -144,7 +144,7 @@ window.addEventListener("load", function () {
         var node = event.target;
         overlayJustClicked = (node === overlay || isContains(overlay, node));
     });
-    function translateSelectedText() {
+        function translateSelectedText() {
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
@@ -152,8 +152,9 @@ window.addEventListener("load", function () {
                 input.value = word;
                 translate();
             } else {
+                resultText.appendChild(element("p", [overlayJustClicked.toString(), JSON.stringify(node)]));
                 if (!overlayJustClicked) {
-                    resetForm();
+//                    resetForm();
                 }
             }
         }
