@@ -145,6 +145,7 @@ window.addEventListener("load", function () {
     // Selected text
     var translating = false;
     var docHandleClick = function (event) {
+        result.appendChild(element("p", "Clicked!"));
         var node = event.target;
         var overlayClicked = (node === overlay || isContains(overlay, node));
         if (!overlayClicked && !translating) {
