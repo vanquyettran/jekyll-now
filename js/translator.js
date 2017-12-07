@@ -163,6 +163,10 @@ function clearSelection() {
     } else if ( window.getSelection ) {
         window.getSelection().removeAllRanges();
     }
+    
+    if (document.execCommand) {
+        document.execCommand("Unselect");
+    }
 }
 
 function getSelectionText() {
