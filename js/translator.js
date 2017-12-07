@@ -143,7 +143,7 @@ window.addEventListener("load", function () {
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
-            if (word) {
+            if (word && word.length < 30) {
                 input.value = word;
                 translate();
             } else {
