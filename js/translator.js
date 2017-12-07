@@ -156,6 +156,7 @@ window.addEventListener("load", function () {
         }
     }
     document.addEventListener("selectionchange", handleSelectionChange);
+    document.addEventListener("touchstart", handleSelectionChange);
 });
 
 function getSelectionNode() {
