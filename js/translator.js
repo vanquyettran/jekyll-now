@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
         click: resetForm
     });
     appendChildren(result, [resultText, closeBtn]);
-    var translate = function () {
+    var translate = function (callback) {
         var word = input.value.trim();
         if (word) {
             empty(resultText);
@@ -60,7 +60,6 @@ window.addEventListener("load", function () {
                         res.forEach(function (line) {
                             resultText.appendChild(element("p", line));
                         });
-                        
                     }
                 } else {
                     resultText.appendChild(element("p", xhr.responseText));
@@ -69,6 +68,11 @@ window.addEventListener("load", function () {
             xhr.addEventListener("error", function () {
                 empty(resultText);
                 resultText.appendChild(element("p", "Unexpected error!"));
+            });
+            xhr.addEventListener("loadend", function () {
+                if ("function" == typeof callback) {
+                    callback();
+                }
             });
             xhr.open("GET", "https://traxanhthainguyen.com/test/translate?word=" + word);
             xhr.send();
@@ -143,20 +147,24 @@ window.addEventListener("load", function () {
     var docHandleClick = function (event) {
         var node = event.target;
         var overlayClicked = (node === overlay || isContains(overlay, node));
-        result.appendChild(element("div", node.nodeName));
         if (!overlayClicked && !translating) {
             resetForm();
         }
     };
-    document.addEventListener("click", docHandleClick);
-    document.addEventListener("touchstart", docHandleClick);
+    if (document.ontouchstart) {
+        document.addEventListener("touchstart", docHandleClick);
+    } else {
+        document.addEventListener("click", docHandleClick);
+    }
     function translateSelectedText() {
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
             if (word && word.length < 30) {
                 input.value = word;
-                translate();
+                translate(function () {
+                    translating = false;
+                });
                 translating = true;
             } else {
                 translating = false;
