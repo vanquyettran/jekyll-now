@@ -142,7 +142,7 @@ window.addEventListener("load", function () {
     var translating = false;
     document.addEventListener("click", function (event) {
         var node = event.target;
-        overlayClicked = (node === overlay || isContains(overlay, node));
+        var overlayClicked = (node === overlay || isContains(overlay, node));
         if (!overlayClicked && !translating) {
             resetForm();
         }
