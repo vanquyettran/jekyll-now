@@ -142,6 +142,7 @@ window.addEventListener("load", function () {
     function translateSelectedText() {
         var word = getSelectionText().trim();
         if (word && "" == input.value.trim()) {
+            clearSelection();
             input.value = word;
             translate();
         }
@@ -150,7 +151,13 @@ window.addEventListener("load", function () {
 });
 
 
-
+function clearSelection() {
+    if ( document.selection ) {
+        document.selection.empty();
+    } else if ( window.getSelection ) {
+        window.getSelection().removeAllRanges();
+    }
+}
 
 function getSelectionText() {
     var text = "";
