@@ -140,14 +140,16 @@ window.addEventListener("load", function () {
 
     // Selected text
     var translating = false;
-    document.addEventListener("click", function (event) {
+    var docHandleClick = function (event) {
         var node = event.target;
         var overlayClicked = (node === overlay || isContains(overlay, node));
         result.appendChild(element("div", node.nodeName));
         if (!overlayClicked && !translating) {
             resetForm();
         }
-    });
+    };
+    document.addEventListener("click", docHandleClick);
+    document.addEventListener("touchstart", docHandleClick);
     function translateSelectedText() {
         var node = getSelectionNode();
         var word = getSelectionText().trim();
