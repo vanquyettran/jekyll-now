@@ -140,16 +140,26 @@ window.addEventListener("load", function () {
 
     // Selected text
     function translateSelectedText() {
+        var overlayJustClicked = false;
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
             if (word && word.length < 30) {
+                overlayJustClicked = false;
                 input.value = word;
                 translate();
             } else {
-                resetForm();
+                if (!overlayJustClicked) {
+                    resetForm();
+                }
             }
         }
+        document.addEventListener("click", function (event) {
+            var node = event.target;
+            if (node !== overlay && !isContains(overlay, node)) {
+                overlayJustClicked = true;
+            }
+        });
     }
     document.onselectionchange = translateSelectedText;
 });
