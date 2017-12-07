@@ -156,7 +156,7 @@ window.addEventListener("load", function () {
         }
         document.addEventListener("click", function (event) {
             var node = event.target;
-            if (node !== overlay && !isContains(overlay, node)) {
+            if (node === overlay || isContains(overlay, node)) {
                 overlayJustClicked = true;
             }
         });
