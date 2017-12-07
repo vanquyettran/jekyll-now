@@ -111,7 +111,7 @@ window.addEventListener("load", function () {
                 right: 0,
                 background: "#eee",
                 width: "100%",
-                opacity: 0.95,
+                opacity: 0.9,
                 overflow: "hidden",
                 "z-index": 1000,
                 "max-width": "420px",
