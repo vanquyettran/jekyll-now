@@ -114,7 +114,7 @@ window.addEventListener("load", function () {
                 opacity: 0.95,
                 overflow: "hidden",
                 "z-index": 1000,
-                "max-width": "480px",
+                "max-width": "420px",
                 "border-radius": "3px"
             })
         }
