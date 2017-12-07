@@ -138,32 +138,27 @@ window.addEventListener("load", function () {
         }
     });
 
-    // Selected text
+        // Selected text
+    var overlayJustClicked = false;
+    document.addEventListener("click", function (event) {
+        var node = event.target;
+        overlayJustClicked = (node === overlay || isContains(overlay, node));
+    });
     function translateSelectedText() {
-        var overlayJustClicked = false;
         var node = getSelectionNode();
         var word = getSelectionText().trim();
         if (node !== overlay && !isContains(overlay, node)) {
             if (word && word.length < 30) {
-                overlayJustClicked = false;
                 input.value = word;
                 translate();
             } else {
-                setTimeout(function () {
-                    if (!overlayJustClicked) {
-                        resetForm();
-                    }
-                }, 100);
+                if (!overlayJustClicked) {
+                    resetForm();
+                }
             }
         }
-        document.addEventListener("click", function (event) {
-            var node = event.target;
-            if (node === overlay || isContains(overlay, node)) {
-                overlayJustClicked = true;
-            }
-        });
     }
-    document.onselectionchange = translateSelectedText;
+    document.addEventListener("selectionchange", translateSelectedText);
 });
 
 function getSelectionNode() {
