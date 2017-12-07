@@ -149,9 +149,11 @@ window.addEventListener("load", function () {
                 input.value = word;
                 translate();
             } else {
-                if (!overlayJustClicked) {
-                    resetForm();
-                }
+                setTimeout(function () {
+                    if (!overlayJustClicked) {
+                        resetForm();
+                    }
+                }, 100);
             }
         }
         document.addEventListener("click", function (event) {
