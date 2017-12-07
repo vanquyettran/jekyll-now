@@ -123,7 +123,7 @@ window.addEventListener("load", function () {
 
     window.addEventListener("scroll", function () {
         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        var offset = 150;
+        var offset = 0;
         var header = document.querySelector("header");
         if (header) {
             offset = header.clientHeight;
@@ -138,17 +138,21 @@ window.addEventListener("load", function () {
         }
     });
 
-
     // Selected text
     function translateSelectedText() {
+        var node = getSelectionNode();
         var word = getSelectionText().trim();
-        if (word && "" == input.value.trim()) {
+        if (word && node !== overlay && !isContains(overlay, node)) {
             input.value = word;
             translate();
         }
     }
     document.addEventListener("selectionchange", translateSelectedText);
 });
+
+function getSelectionNode() {
+    return window.getSelection().anchorNode.parentNode;
+}
 
 function getSelectionText() {
     var text = "";
