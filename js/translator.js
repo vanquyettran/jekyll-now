@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
         click: resetForm
     });
     appendChildren(result, [resultText, closeBtn]);
-    var translate = function () {
+    var translate = function (callback) {
         var word = input.value.trim();
         if (word) {
             empty(resultText);
@@ -60,14 +60,21 @@ window.addEventListener("load", function () {
                         res.forEach(function (line) {
                             resultText.appendChild(element("p", line));
                         });
+                        
                     }
                 } else {
                     resultText.appendChild(element("p", xhr.responseText));
+                }
+                if ("function" == typeof callback) {
+                    callback();
                 }
             });
             xhr.addEventListener("error", function () {
                 empty(resultText);
                 resultText.appendChild(element("p", "Unexpected error!"));
+                if ("function" == typeof callback) {
+                    callback();
+                }
             });
             xhr.open("GET", "https://traxanhthainguyen.com/test/translate?word=" + word);
             xhr.send();
@@ -142,9 +149,8 @@ window.addEventListener("load", function () {
     function translateSelectedText() {
         var word = getSelectionText().trim();
         if (word && "" == input.value.trim()) {
-            clearSelection();
             input.value = word;
-            translate();
+            translate(clearSelection);
         }
     }
     document.addEventListener("selectionchange", translateSelectedText);
