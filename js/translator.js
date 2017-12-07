@@ -151,12 +151,13 @@ window.addEventListener("load", function () {
                 input.value = word;
                 translate();
             } else {
-                resetForm();
+                if (node !== null) {
+                    resetForm();
+                }
             }
         }
     }
     document.addEventListener("selectionchange", handleSelectionChange);
-    document.addEventListener("touchstart", handleSelectionChange);
 });
 
 function getSelectionNode() {
