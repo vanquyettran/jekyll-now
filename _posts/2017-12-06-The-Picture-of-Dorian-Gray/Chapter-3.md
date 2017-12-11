@@ -8,6 +8,7 @@ Street over to the Albany to call on his uncle, Lord Fermor, a genial
 if somewhat rough-mannered old bachelor, whom the outside world called
 selfish because it derived no particular benefit from him, but who was
 considered generous by Society as he fed the people who amused him.
+
 His father had been our ambassador at Madrid when Isabella was young
 and Prim unthought of, but had retired from the diplomatic service in a
 capricious moment of annoyance on not being offered the Embassy at
