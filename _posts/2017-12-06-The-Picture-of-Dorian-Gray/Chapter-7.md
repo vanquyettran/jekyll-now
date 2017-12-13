@@ -38,7 +38,7 @@ Else would a maiden blush bepaint my cheek
 For that which thou hast heard me speak to-night—
 was declaimed with the painful precision of a schoolgirl who has been taught to recite by some second-rate professor of elocution. When she leaned over the balcony and came to those wonderful lines—
 
-    Although I joy in thee,
+Although I joy in thee,
 I have no joy of this contract to-night:
 It is too rash, too unadvised, too sudden;
 Too like the lightning, which doth cease to be
